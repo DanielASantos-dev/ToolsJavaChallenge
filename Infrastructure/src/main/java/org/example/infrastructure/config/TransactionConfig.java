@@ -1,4 +1,4 @@
-package org.example.infrastructure.configuration;
+package org.example.infrastructure.config;
 
 import org.example.application.gateway.*;
 import org.example.application.impl.CreateTransactionUseCaseImpl;
