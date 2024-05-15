@@ -73,14 +73,12 @@ public class Transaction {
     public StatusEnum getStatus() {
         return status;
     }
-
     public void authorizeTransaction(){
         this.status = StatusEnum.AUTORIZADO;
     }
     public void denyTransaction(){
         this.status = StatusEnum.NEGADO;
     }
-
     public LocalDateTime getDateTime() {
         return dateTime;
     }
