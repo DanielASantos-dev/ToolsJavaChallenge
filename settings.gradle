@@ -1,0 +1,6 @@
+rootProject.name = 'Tools_Java_Challenge_B'
+include 'Core'
+include 'UseCase'
+include 'Application'
+include 'Infrastructure'
+

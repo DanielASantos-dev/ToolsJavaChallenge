@@ -1,0 +1,449 @@
+{
+	"info": {
+		"_postman_id": "4c849627-25b5-49df-9466-1d6acb76a74a",
+		"name": "Payment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25805930",
+		"_collection_link": "https://orange-resonance-685217.postman.co/workspace/Teste-T%C3%A9cnico~404128be-281d-4d9e-9fae-1cef01548a96/collection/25805930-4c849627-25b5-49df-9466-1d6acb76a74a?action=share&source=collection_link&creator=25805930"
+	},
+	"item": [
+		{
+			"name": "Create Payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transacao\": {\r\n        \"cartao\": \"4444256523251234\",\r\n        \"descricao\": {\r\n            \"valor\": \"500.50\",\r\n            \"dataHora\": \"01/05/2024 15:00:00\",\r\n            \"estabelecimento\": \"Petshop Mundo Cão\"\r\n        },\r\n        \"formaPagamento\": {\r\n            \"tipo\": \"AVISTA\",\r\n            \"parcelas\": \"1\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ValidationError",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transacao\": {\r\n        \"cartao\": \"\",\r\n        \"descricao\": {\r\n            \"valor\": \"22.00\",\r\n            \"dataHora\": \"14/05/2024 17:11:17\",\r\n            \"estabelecimento\": \"Store Test\"\r\n        },\r\n        \"formaPagamento\": {\r\n            \"tipo\": \"AVISTA\",\r\n            \"parcelas\": \"2\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 20:55:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"result\": null,\n    \"message\": null,\n    \"error\": {\n        \"message\": \"Invalid Request\",\n        \"code\": \"PAY-0004\",\n        \"validationErrors\": [\n            {\n                \"field\": \"transacao.cartao\",\n                \"message\": \"não deve estar em branco\"\n            }\n        ]\n    }\n}"
+				},
+				{
+					"name": "Create Payment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transacao\": {\r\n        \"cartao\": \"4444256523251234\",\r\n        \"descricao\": {\r\n            \"valor\": \"22.00\",\r\n            \"dataHora\": \"14/05/2024 17:11:17\",\r\n            \"estabelecimento\": \"Store Test\"\r\n        },\r\n        \"formaPagamento\": {\r\n            \"tipo\": \"AVISTA\",\r\n            \"parcelas\": \"2\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 21:02:48 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"result\": {\n        \"transacao\": {\n            \"id\": \"2\",\n            \"cartao\": \"4444256523251234\",\n            \"descricao\": {\n                \"valor\": 22,\n                \"dataHora\": \"2024-05-14T17:11:17\",\n                \"estabelecimento\": \"Store Test\",\n                \"nsu\": \"1715720557409\",\n                \"codigoAutorizacao\": null,\n                \"status\": \"NEGADO\"\n            },\n            \"formaPagamento\": {\n                \"tipo\": \"AVISTA\",\n                \"parcelas\": \"2\"\n            }\n        }\n    },\n    \"message\": null,\n    \"error\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Find All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success With Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 22:18:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"result\": [\n        {\n            \"transacao\": {\n                \"id\": \"2\",\n                \"cartao\": \"4444256523251234\",\n                \"descricao\": {\n                    \"valor\": 22,\n                    \"dataHora\": \"2024-05-14T17:11:17\",\n                    \"estabelecimento\": \"Store Test\",\n                    \"nsu\": \"1715724667388\",\n                    \"codigoAutorizacao\": \"Foo0wiJFrN\",\n                    \"status\": \"AUTORIZADO\"\n                },\n                \"formaPagamento\": {\n                    \"tipo\": \"AVISTA\",\n                    \"parcelas\": \"2\"\n                }\n            }\n        },\n        {\n            \"transacao\": {\n                \"id\": \"6\",\n                \"cartao\": \"4444256523251234\",\n                \"descricao\": {\n                    \"valor\": 22,\n                    \"dataHora\": \"2024-05-14T17:11:17\",\n                    \"estabelecimento\": \"Store Test\",\n                    \"nsu\": \"1715724667392\",\n                    \"codigoAutorizacao\": \"XsX6SkZXFE\",\n                    \"status\": \"AUTORIZADO\"\n                },\n                \"formaPagamento\": {\n                    \"tipo\": \"AVISTA\",\n                    \"parcelas\": \"2\"\n                }\n            }\n        },\n        {\n            \"transacao\": {\n                \"id\": \"8\",\n                \"cartao\": \"4444256523251234\",\n                \"descricao\": {\n                    \"valor\": 22,\n                    \"dataHora\": \"2024-05-14T17:11:17\",\n                    \"estabelecimento\": \"Store Test\",\n                    \"nsu\": \"1715724667394\",\n                    \"codigoAutorizacao\": \"HFTRpFafGq\",\n                    \"status\": \"AUTORIZADO\"\n                },\n                \"formaPagamento\": {\n                    \"tipo\": \"AVISTA\",\n                    \"parcelas\": \"2\"\n                }\n            }\n        }\n    ],\n    \"message\": null,\n    \"error\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Find Reverse By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/transactions/reverse/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"reverse",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "NotFound",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/reverse/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"reverse",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 20:57:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"result\": null,\n    \"message\": null,\n    \"error\": {\n        \"message\": \"Estorno nao encontrado\",\n        \"code\": \"PAY-0002\",\n        \"validationErrors\": null\n    }\n}"
+				},
+				{
+					"name": "Success With Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/reverse/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"reverse",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 21:04:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"result\": {\n        \"transacao\": {\n            \"id\": \"1\",\n            \"cartao\": \"4444256523251234\",\n            \"descricao\": {\n                \"valor\": 22,\n                \"dataHora\": \"2024-05-14T17:11:17\",\n                \"estabelecimento\": \"Store Test\",\n                \"nsu\": \"1715720557408\",\n                \"codigoAutorizacao\": null,\n                \"status\": \"NEGADO\"\n            },\n            \"formaPagamento\": {\n                \"tipo\": \"AVISTA\",\n                \"parcelas\": \"2\"\n            }\n        }\n    },\n    \"message\": null,\n    \"error\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Find By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/transactions/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success With Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"5"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 21:04:34 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"result\": {\n        \"transacao\": {\n            \"id\": \"5\",\n            \"cartao\": \"4444256523251234\",\n            \"descricao\": {\n                \"valor\": 22,\n                \"dataHora\": \"2024-05-14T17:11:17\",\n                \"estabelecimento\": \"Store Test\",\n                \"nsu\": \"1715720557412\",\n                \"codigoAutorizacao\": \"87CsXTkGnV\",\n                \"status\": \"AUTORIZADO\"\n            },\n            \"formaPagamento\": {\n                \"tipo\": \"AVISTA\",\n                \"parcelas\": \"2\"\n            }\n        }\n    },\n    \"message\": null,\n    \"error\": null\n}"
+				},
+				{
+					"name": "NotFound",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"7"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 21:05:01 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"result\": null,\n    \"message\": null,\n    \"error\": {\n        \"message\": \"Pagamento nao encontrado\",\n        \"code\": \"PAY-0003\",\n        \"validationErrors\": null\n    }\n}"
+				}
+			]
+		}
+	]
+}
