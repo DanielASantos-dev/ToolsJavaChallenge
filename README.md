@@ -63,3 +63,5 @@ cd ToolsJavaChallenge
 
 # Execute a aplicação
 ./gradlew bootRun
+
+# Import a collection no diretório para o Postman
